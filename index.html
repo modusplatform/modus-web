@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>modus</title>
+    <link rel="stylesheet"
+          href="node_modules/material-components-web/dist/material-components-web.css">
+          <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 80%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+<body>
+    <h2 class="mdc-typography--display2">Welcome!</h2>
+    <form action="#" id="greeting-form">
+    <div class="mdc-textfield" data-mdc-auto-init="MDCTextfield">
+      <input type="text" class="mdc-textfield__input" id="myName">
+      <label for="name-input" class="mdc-textfield__label">Enter your name!</label>
+    </div>
+    <div>
+    <button type="submit"
+            class="mdc-button
+                   mdc-button--raised
+                   mdc-button--primary
+                   mdc-ripple-surface"
+            data-mdc-auto-init="MDCRipple">
+      Update Location
+    </button>
+  </form>
+  </div>
+    <div id="log"></div>
+    <div id="map"></div>
+    <script src="node_modules/material-components-web/dist/material-components-web.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+    <!-- GeoFire -->
+    <script src="https://cdn.firebase.com/libs/geofire/4.1.0/geofire.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0sFD0QdnwiRjBAnZ0IBze3Sdh-ONHPeA" async defer>
+    </script>
+    <script src="js/geolocate.js" defer></script>
+    
+  </body>
+</html>

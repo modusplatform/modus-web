@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>modus</title>
+<style>
+  html, body, #viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+</style>
+<link rel="stylesheet" href="https://js.arcgis.com/4.5/esri/css/main.css">
+<script src="https://js.arcgis.com/4.5/"></script>
+<script>
+require([
+  "esri/Map",
+  "esri/views/SceneView",
+  "esri/layers/GraphicsLayer",
+  "esri/Graphic",
+  "dojo/domReady!"
+], function(Map, SceneView,GraphicsLayer, Graphic){
+  var map = new Map({
+    basemap: "streets",
+    ground: "world-elevation"
+  });
+
+  /*********************
+   * Add graphics layer
+   *********************/
+
+  var graphicsLayer = new GraphicsLayer();
+  map.add(graphicsLayer);
+
+  /*************************
+   * Add a 3D point graphic
+   *************************/
+
+   // Harrisbrg University
+  var point = {
+    type: "point", // autocasts as new Point()
+    x: -75.165925,
+    y: 39.9623509,
+    z: 100
+  };
+
+  markerSymbol = {
+    type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+    color: [0, 0, 0],
+    outline: { // autocasts as new SimpleLineSymbol()
+      color: [255, 255, 255],
+      width: 1
+    }
+  };
+
+  var pointGraphic = new Graphic({
+    geometry: point,
+    symbol: markerSymbol
+  });
+
+  graphicsLayer.add(pointGraphic);
+
+  /****************************
+   * Add a 3D polyline graphic
+   ****************************/
+
+  var polyline = {
+    type: "polyline", // autocasts as new Polyline()
+    paths: [
+      [-75.165925, 39.9623509, 0],
+      [-75.165925, 39.9623509, 100]
+    ]
+  };
+
+  lineSymbol = {
+    type: "simple-line", // autocasts as SimpleLineSymbol()
+    color: [226, 119, 40],
+    width: 4
+  };
+
+  var polylineGraphic = new Graphic({
+    geometry: polyline,
+    symbol: lineSymbol
+  });
+
+  graphicsLayer.add(polylineGraphic);
+  var view = new SceneView({
+    container: "viewDiv",     // Reference to the scene div created in step 5
+    map: map,                 // Reference to the map object created before the scene
+    scale: 1500,       // Sets the initial scale to 1:50,000,000
+    // center: [,],  // Sets the center point of view with lon/lat
+    camera: { // autocasts as new Camera()
+      position: { // autocasts as new Point()
+        x: -75.165925,
+        y: 39.9623509,
+        z: 206.7049653716385
+      },
+      heading: 0.34445102566290225,
+      tilt: 72.95536300536367
+    }
+  });
+});
+</script>
+</head>
+<body>
+  <div id="viewDiv"></div>
+</body>
+</html>
